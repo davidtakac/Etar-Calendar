@@ -26,6 +26,7 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.MatrixCursor;
@@ -126,6 +127,12 @@ public class CalendarAppWidgetService extends RemoteViewsService {
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
         return new CalendarFactory(getApplicationContext(), intent);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Utils.sendUpdateWidgetIntent(getApplicationContext());
     }
 
     public static class CalendarFactory extends BroadcastReceiver implements
