@@ -129,12 +129,6 @@ public class CalendarAppWidgetService extends RemoteViewsService {
         return new CalendarFactory(getApplicationContext(), intent);
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        Utils.sendUpdateWidgetIntent(getApplicationContext());
-    }
-
     public static class CalendarFactory extends BroadcastReceiver implements
             RemoteViewsService.RemoteViewsFactory, Loader.OnLoadCompleteListener<Cursor> {
         private static final boolean LOGD = false;
